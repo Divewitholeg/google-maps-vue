@@ -7,6 +7,83 @@ const center = { lat: 59.40989085951935, lng: 24.643809184746956 }
 //Your Google API key
 const key = import.meta.env.VITE_GOOGLE_API_KEY
 
+// Feature and Element types
+// https://developers.google.com/maps/documentation/javascript/style-reference
+const custom = [
+  {
+    featureType: 'all',
+    elementType: 'all',
+    stylers: [
+      {
+        saturation: -70
+      }
+    ]
+  },
+  {
+    featureType: 'road',
+    elementType: 'geometry',
+    stylers: [
+      {
+        hue: '#ff0000'
+      }
+    ]
+  },
+  {
+    featureType: 'landscape.man_made',
+    elementType: 'fill',
+    stylers: [
+      {
+        color: '#f9a8d4'
+      }
+    ]
+  },
+  {
+    featureType: 'landscape.natural',
+    elementType: 'fill',
+    stylers: [
+      {
+        color: '#fce7f3'
+      }
+    ]
+  },
+  {
+    featureType: 'poi.park',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#f472b6'
+      }
+    ]
+  },
+  {
+    featureType: 'poi.attraction',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#f472b6'
+      }
+    ]
+  },
+  {
+    featureType: 'water',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#d946ef'
+      }
+    ]
+  },
+  {
+    featureType: 'poi.sports_complex',
+    elementType: 'geometry',
+    stylers: [
+      {
+        color: '#f472b6'
+      }
+    ]
+  }
+]
+
 //Marker or CustomMarker options
 const markerOptions = {
   position: center,
@@ -30,13 +107,6 @@ const alertAddress = () => {
       Email: oleg@rybnikov.online`
   )
 }
-
-//CustomControl to open Google Maps
-function openMaps(this: any) {
-  this.$nextTick(() => {
-    window.open('https://goo.gl/maps/wbDCkVD79FnrNQQA7', '_blank')
-  })
-}
 </script>
 
 <template>
@@ -47,12 +117,13 @@ function openMaps(this: any) {
 
     <GoogleMap
       :api-key="key"
-      style="width: 60%; height: 300px"
+      :styles="custom"
+      style="width: 80%; height: 500px"
       class="mx-auto mt-[10vh] border-4 border-fuchsia-700 rounded"
       :center="center"
       :zoom="15"
     >
-      <Marker :options="markerOptions">
+      <!-- <Marker :options="markerOptions">
         <InfoWindow>
           <article>
             <h1>Oleg Rõbnikov Web Development</h1>
@@ -65,7 +136,7 @@ function openMaps(this: any) {
             <p>Email: oleg@rybnikov.online</p>
           </article>
         </InfoWindow>
-      </Marker>
+      </Marker> -->
       <CustomMarker
         @click="alertAddress"
         :options="{ position: center, anchorPoint: 'TOP_CENTER' }"
