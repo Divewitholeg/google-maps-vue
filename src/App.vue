@@ -123,7 +123,7 @@ const alertAddress = () => {
       :center="center"
       :zoom="15"
     >
-      <!-- <Marker :options="markerOptions">
+      <Marker :options="markerOptions">
         <InfoWindow>
           <article>
             <h1>Oleg Rõbnikov Web Development</h1>
@@ -136,7 +136,7 @@ const alertAddress = () => {
             <p>Email: oleg@rybnikov.online</p>
           </article>
         </InfoWindow>
-      </Marker> -->
+      </Marker>
       <CustomMarker
         @click="alertAddress"
         :options="{ position: center, anchorPoint: 'TOP_CENTER' }"
